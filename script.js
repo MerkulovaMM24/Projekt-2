@@ -36,12 +36,13 @@ function renderTaskSection() {
  
     // Loob iga listi jaoks ülesannete listi
     lists.forEach((list, index) => {
+        // koostab uue HTML elemendi div-konteineri ja lisab talle "task" klassi
         const listDiv = document.createElement("div");
         listDiv.classList.add("task");
  
         const listName = document.createElement("h3");
         listName.textContent = list.name;
-        listDiv.appendChild(listName);
+        listDiv.appendChild(listName); // appendChild käsk lisab sulgudes oleva elemendi ees olevasse elemendisse
  
         // Praeguse listi ülesande sisestusjaotis
         const taskInputContainer = document.createElement("div");
