@@ -51,11 +51,11 @@ function renderTaskSection() {
         const taskInput = document.createElement("input");
         taskInput.type = "text";
         taskInput.placeholder = "Enter task";
-        taskInput.id = `task-input-${index}`;
+        taskInput.id = `task-input-${index}`; // määrab unikaalse ID
  
         const addButton = document.createElement("button");
         addButton.textContent = "Add Task";
-        addButton.onclick = () => addTask(index);
+        addButton.onclick = () => addTask(index); // `task-input-${index}`, kutsub funktsiooni välja.
  
         taskInputContainer.appendChild(taskInput);
         taskInputContainer.appendChild(addButton);
@@ -69,14 +69,14 @@ function renderTaskSection() {
             const taskDiv = document.createElement("div");
             taskDiv.classList.add("task-item");
  
-            const taskTitle = document.createElement("span");
+            const taskTitle = document.createElement("span"); // inline-element, mida kasutatakse sageli väikeste tekstiosade kuvamiseks ilma, et see algataks uut rida 
             taskTitle.textContent = task.name;
  
             // Loob ülesande täitmiseks märkeruut
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.checked = task.completed;
-            checkbox.onchange = () => toggleTaskCompletion(index, taskIndex);
+            checkbox.onchange = () => toggleTaskCompletion(index, taskIndex); // onchange sündmus käivitub iga kord, kui kasutaja muudab märkeruudu olekut
  
             // Loob ülesande jaoks kustutamisnupp
             const deleteButton = document.createElement("button");
@@ -110,7 +110,7 @@ function renderTaskSection() {
 // Funktsioon ülesande listisse lisamiseks
 function addTask(listIndex) {
     const taskInput = document.getElementById(`task-input-${listIndex}`);
-    const taskName = taskInput.value.trim();
+    const taskName = taskInput.value.trim(); 
  
     if (taskName === "") {
         alert("Please enter a task!");
@@ -120,7 +120,7 @@ function addTask(listIndex) {
     // Lisab uue ülesanne vastavasse listisse
     lists[listIndex].tasks.push({
         name: taskName,
-        completed: false
+        completed: false  // määrab et ülesanne pole veel lõppetatud
     });
  
     // Tühjendab sisestusväli
@@ -132,14 +132,14 @@ function addTask(listIndex) {
  
 // Funktsioon ülesande lõpetamise oleku vahetamiseks
 function toggleTaskCompletion(listIndex, taskIndex) {
-    lists[listIndex].tasks[taskIndex].completed = !lists[listIndex].tasks[taskIndex].completed;
+    lists[listIndex].tasks[taskIndex].completed = !lists[listIndex].tasks[taskIndex].completed; // =! Kasutab loogilist eitust, et muuta väärtust vastupidiseks; true-false, false-true
     renderTaskSection();
 }
  
 // Funktsioon ülesande kustutamiseks
 function deleteTask(listIndex, taskIndex) {
-    lists[listIndex].tasks.splice(taskIndex, 1);
-    renderTaskSection();
+    lists[listIndex].tasks.splice(taskIndex, 1); // splice kasutatakse elementide eemaldamiseks või asendamiseks
+    renderTaskSection();                         // 1 - näitab, mitu elementi massiivist tuleb eemaldada
 }
  
 // Funktsioon listie kustutamiseks
